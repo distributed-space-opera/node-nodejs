@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package employee;
+
+service Employee {
+
+  rpc paySalary (EmployeeRequest) returns (stream EmployeeResponse) {}
+  rpc generateReport (stream ReportEmployeeRequest) returns (ReportEmployeeResponse) {}
+}
+
+message ReportEmployeeRequest {
+    int32 id = 1;
+}
+  
+message ReportEmployeeResponse{
+    string successfulReports = 1;
+    string failedReports = 2;
+  }
+
+message EmployeeRequest {
+  repeated int32 employeeIdList = 1;
+}
+
+message EmployeeResponse{
+  string message = 1;
+}
+
+message EmployeeDetails {
+    int32 id = 1;
+    string email = 2;
+    string firstName = 3; 
+    string lastName = 4;
+  }

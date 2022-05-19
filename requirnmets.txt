@@ -1,0 +1,25 @@
+
+#### Node
+
+* - Node registers onto the network by initially communicating with the gateway
+ * - Node gets authenticated by the gateway and receives the IP address of the master node
+
+* - Node accepts upload and download requests from the client → chunk
+
+* - Node informs the master node when data is uploaded to it → grpc method?
+*  - Node receives IP addresses of other nodes where data needs to be replicated
+* -node replicates data based on this  
+
+* - Node must be able to receive a message from the master node about replicating data when 
+some other node fails
+
+* - Node will receive IP addresses of other nodes where data needs to be replicated -> node replicates data based on this
+
+
+  There're two replication scenarios: 
+1. replicate after file upload
+2. replicate after node failure
+
+The flows for each looks like
+1. file upload to node -> node contact master for other nodes' ips -> node call CreateReplica of other nodes
+2. Other node failed -> master call nodes' ReplicateFile with other node's ips -> node call CreateReplica of other nodes

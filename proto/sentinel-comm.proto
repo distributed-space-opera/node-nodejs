@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.node.protos";
+//option java_outer_classname = "StreamProto";
+
+package stream;
+
+service SentinelMonitoring {
+
+  rpc healthCheck (healthCheckRequest) returns (healthCheckReply) {}
+}
+
+// The request message containing the user's name.
+message healthCheckRequest {
+}
+
+// The response message containing the greetings
+message healthCheckReply {
+  string status = 1;
+}

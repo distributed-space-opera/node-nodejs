@@ -1,0 +1,40 @@
+const PROTO_PATH_GATEWAY = '../proto/gateway-comm.proto';
+
+const grpc = require('grpc');
+const protoLoader = require('@grpc/proto-loader');
+
+let packageDefinition_gateway = protoLoader.loadSync(
+    PROTO_PATH_GATEWAY,
+    {keepCase: true,
+      longs: String,
+      enums: String,
+      defaults: true,
+      oneofs: true
+});
+
+let gateway_comm_proto = grpc.loadPackageDefinition(packageDefinition_gateway);
+
+let { RegisterNodeFile } = require('./RegisterNodeFile.js');
+
+function main() {
+    let server = new grpc.Server();
+    server.addService(gateway_comm_proto.stream.Authenticate.service,
+        {
+            Register: RegisterNodeFile,
+            
+            Login: (call, callback) => {
+              console.log(call);
+              callback(null, {masterip: "localhost:4502",
+              message: "ERROR",
+              token: "12"})
+            },
+            ValidateToken: (call, callback) => {
+                callback(null, {message: "INVALID"})
+              }
+        }
+    );
+    server.bind('0.0.0.0:8800', grpc.ServerCredentials.createInsecure());
+    server.start();
+}
+  
+main();

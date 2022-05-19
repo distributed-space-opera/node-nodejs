@@ -1,0 +1,23 @@
+{
+  "name": "grpc-javascript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.1.0",
+    "buffer-split": "^1.0.0",
+    "buffer-splitter": "^1.1.0",
+    "dotenv": "^16.0.1",
+    "grpc": "^1.11.0",
+    "ip": "^1.1.8",
+    "lodash": "^4.6.1",
+    "node-split": "^1.0.1",
+    "nodemon": "^2.0.16",
+    "redis": "^4.1.0"
+  },
+  "author": "",
+  "license": "ISC"
+}
